@@ -354,7 +354,10 @@ parse_assertion_attributes = (dom) ->
     throw new Error("Invalid attribute without name") unless attribute_name?
     attribute_values = attribute.getElementsByTagNameNS(XMLNS.SAML, 'AttributeValue')
     assertion_attributes[attribute_name] = _(attribute_values).map (attribute_value) ->
-      attribute_value.childNodes[0]?.data or ''
+      value = attribute_value
+      while value.childNodes?[0]
+        value = value.childNodes[0]
+      value?.data or ''
   assertion_attributes
 
 # Takes in an object containing SAML Assertion Attributes and returns an object with certain common attributes changed
