@@ -503,7 +503,7 @@ parse_assertion_attributes = function(dom) {
     assertion_attributes[attribute_name] = _(attribute_values).map(function(attribute_value) {
       var ref2, value;
       value = attribute_value;
-      while ((ref2 = value.childNodes) != null ? ref2[0] : void 0) {
+      while (((ref2 = value.childNodes) != null ? ref2.length : void 0) > 0) {
         value = value.childNodes[0];
       }
       return (value != null ? value.data : void 0) || '';
