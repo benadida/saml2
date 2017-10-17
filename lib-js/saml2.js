@@ -501,13 +501,8 @@ parse_assertion_attributes = function(dom) {
     }
     attribute_values = attribute.getElementsByTagNameNS(XMLNS.SAML, 'AttributeValue');
     assertion_attributes[attribute_name] = _(attribute_values).map(function(attribute_value) {
-      var ref2, value;
-      value = attribute_value;
-      while (((ref2 = value.childNodes) != null ? ref2.length : void 0) > 0 && !value.data) {
-        value = value.childNodes[0];
-        debug(value);
-      }
-      return (value != null ? value.data : void 0) || '';
+      var ref2;
+      return ((ref2 = attribute_value.childNodes[0]) != null ? ref2.data : void 0) || '';
     });
   }
   return assertion_attributes;
