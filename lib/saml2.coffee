@@ -355,8 +355,9 @@ parse_assertion_attributes = (dom) ->
     attribute_values = attribute.getElementsByTagNameNS(XMLNS.SAML, 'AttributeValue')
     assertion_attributes[attribute_name] = _(attribute_values).map (attribute_value) ->
       value = attribute_value
-      while value.childNodes?.length > 0
+      while (value.childNodes?.length > 0 and !value.data)
         value = value.childNodes[0]
+        debug value
       value?.data or ''
   assertion_attributes
 
